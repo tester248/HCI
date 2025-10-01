@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tabbed UI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="tab-bar">
+            <button id="tab1" class="tab-button active">Text</button>
+            <button id="tab2" class="tab-button">Image</button>
+            <button id="tab3" class="tab-button">Video</button>
+        </div>
+        <div id="content1" class="tab-content active">
+            <p>This is some sample text for the first tab.</p>
+            <span>TA70</span>
+        </div>
+        <div id="content2" class="tab-content">
+            <img src="https://cdn.wallpapersafari.com/41/28/6yefSc.jpg" alt="Sample Image">
+        </div>
+        <div id="content3" class="tab-content">
+            <div class="video-wrapper">
+                <iframe class="" src="https://www.youtube.com/embed/G5RpJwCJDqc" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

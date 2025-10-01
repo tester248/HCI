@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Sample Form</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+        <style>
+            body {
+                background: url('https://static.vecteezy.com/system/resources/previews/016/623/673/non_2x/modern-background-with-blue-gradient-free-vector.jpg') no-repeat center center fixed;
+                background-size: cover;
+                font-family: 'Roboto', sans-serif;
+                color: #1f2933;
+            }
+            .material-card {
+                background: rgba(255, 255, 255, 0.92);
+                border-radius: 18px;
+                padding: 24px;
+                box-shadow: 0 18px 40px rgba(15, 23, 42, 0.2);
+                backdrop-filter: blur(8px);
+            }
+            .material-card--muted {
+                background: rgba(248, 250, 252, 0.82);
+            }
+            .material-card h3,
+            .material-card h5 {
+                font-weight: 500;
+                letter-spacing: 0.02em;
+            }
+            .btn-material {
+                position: relative;
+                overflow: hidden;
+                border: none;
+                background: linear-gradient(135deg, #1976d2, #64b5f6);
+                box-shadow: 0 10px 26px rgba(25, 118, 210, 0.35);
+            }
+            .btn-material:focus {
+                box-shadow: 0 0 0 0.25rem rgba(25, 118, 210, 0.35);
+            }
+            .btn-material .ripple {
+                position: absolute;
+                border-radius: 50%;
+                transform: scale(0);
+                animation: ripple 0.6s linear;
+                background: rgba(255, 255, 255, 0.6);
+                pointer-events: none;
+            }
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container py-4">
+            <div class="row g-4 justify-content-center align-items-stretch">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="material-card h-100">
+                        <h3 class="text-center mb-3">Registration Form</h3>
+                        <form id="registrationForm" class="needs-validation" autocomplete="off" novalidate>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">First</span>
+                                <input id="firstName" type="text" placeholder="First Name" class="form-control" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Last</span>
+                                <input id="lastName" type="text" placeholder="Last Name" class="form-control" required>            
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">@</span>
+                                <input id="email" type="email" placeholder="Email" class="form-control" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">***</span>
+                                <input id="password" type="password" placeholder="Password" class="form-control" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Phone</span>
+                                <input id="phone" type="tel" placeholder="e.g. 555-1234" class="form-control" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Role</span>
+                                <select id="role" class="form-select" required>
+                                    <option value="">Select role</option>
+                                    <option>Student</option>
+                                    <option>Professional</option>
+                                    <option>Guest</option>
+                                </select>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input id="updates" class="form-check-input" type="checkbox">
+                                <label class="form-check-label" for="updates">Email me updates</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-material w-100">Register</button>
+                            <div id="submitMessage" class="alert alert-success mt-3 d-none">Registration saved!</div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-12 col-md-5 col-lg-3">
+                    <div id="previewCard" class="material-card material-card--muted h-100 text-center">
+                        <h5 id="previewName" class="mb-1 text-secondary">Full name</h5>
+                        <small id="previewEmail" class="text-muted">email@example.com</small>
+                        <div id="previewDetails" class="mt-2 small text-secondary">
+                            <div id="previewRole">Role: —</div>
+                            <div id="previewPhone">Phone: —</div>
+                            <div id="previewUpdates">Updates: No</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            const form = document.getElementById('registrationForm');
+            const previewName = document.getElementById('previewName');
+            const previewEmail = document.getElementById('previewEmail');
+            const firstName = document.getElementById('firstName');
+            const lastName = document.getElementById('lastName');
+            const email = document.getElementById('email');
+            const role = document.getElementById('role');
+            const phone = document.getElementById('phone');
+            const updates = document.getElementById('updates');
+            const previewRole = document.getElementById('previewRole');
+            const previewPhone = document.getElementById('previewPhone');
+            const previewUpdates = document.getElementById('previewUpdates');
+            const submitMessage = document.getElementById('submitMessage');
+            const materialButtons = document.querySelectorAll('.btn-material');
+
+            function updatePreview() {
+                const name = `${firstName.value.trim()} ${lastName.value.trim()}`.trim();
+                previewName.textContent = name || 'Full name';
+                previewEmail.textContent = email.value.trim() || 'email@example.com';
+                previewRole.textContent = `Role: ${role.value || '—'}`;
+                previewPhone.textContent = `Phone: ${phone.value.trim() || '—'}`;
+                previewUpdates.textContent = `Updates: ${updates.checked ? 'Yes' : 'No'}`;
+            }
+
+            [firstName, lastName, email, role, phone].forEach(input => input.addEventListener('input', updatePreview));
+            updates.addEventListener('change', updatePreview);
+            materialButtons.forEach(button => {
+                button.addEventListener('click', event => {
+                    const ripple = document.createElement('span');
+                    ripple.className = 'ripple';
+                    const rect = button.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    ripple.style.width = ripple.style.height = `${size}px`;
+                    ripple.style.left = `${event.clientX - rect.left - size / 2}px`;
+                    ripple.style.top = `${event.clientY - rect.top - size / 2}px`;
+                    button.appendChild(ripple);
+                    setTimeout(() => ripple.remove(), 600);
+                });
+            });
+            form.addEventListener('submit', event => {
+                event.preventDefault();
+                submitMessage.classList.add('d-none');
+                if (!form.checkValidity()) {
+                    form.classList.add('was-validated');
+                    form.reportValidity();
+                    return;
+                }
+                form.classList.add('was-validated');
+                updatePreview();
+                submitMessage.classList.remove('d-none');
+                submitMessage.textContent = 'Registration successful. Please check your email for confirmation.';
+            });
+        </script>
+    </body>
+</html>
